@@ -1,8 +1,11 @@
 const express = require("express");
 const multer = require("multer");
+const cors = require("cors");
 
 const productsRouter = require("./routes/products.router.js");
 const database = require("./connectionDB.js");
+const mailerRouter = require("./routes/mailer.router.js");
+const purchasesRouter = require("./routes/purchases.router.js");
 
 const { ENV_PATH, DIR_PUBLIC_PATH } = require("./constants/paths.js");
 const { ERROR_SERVER } = require("./constants/messages.js");
@@ -15,9 +18,17 @@ const server = express();
 const PORT = process.env.PORT || 3030;
 const HOST = process.env.HOST || "localhost";
 
+// configuración de CORS
+server.use(cors({
+    origin: process.env.FRONTEND_URL,
+    methods: "GET,POST,PUT,PATCH,DELETE",
+}));
+
 // Middlewares
 server.use(express.json());
 server.use("/api/products", productsRouter);
+server.use("/api/send-mail", mailerRouter);
+server.use("/api/processPurchase", purchasesRouter);
 
 // Configuración de carpeta estatica
 server.use("/public", express.static(DIR_PUBLIC_PATH));

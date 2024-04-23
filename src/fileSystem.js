@@ -5,7 +5,7 @@ const fileExists = async (filePath) => {
         fs.accessSync(filePath);
         return true;
     } catch (error) {
-        console.log("Archivo no encotrado");
+        console.log("Archivo no encontrado");
         return false;
     }
 };
