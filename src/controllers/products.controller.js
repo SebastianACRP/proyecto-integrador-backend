@@ -125,7 +125,7 @@ const update = async (req, res) => {
     }
 };
 //Comentar si no funciona
-/*const updateStock = async (req, res) => {
+const updateStock = async (req, res) => {
     res.set(HEADER_CONTENT_TYPE);
 
     try {
@@ -147,7 +147,7 @@ const update = async (req, res) => {
         res.status(500).send({ success: false, message: ERROR_SERVER });
     }
 
-};*/
+};
 
 const remove = async (req, res) => {
     res.set(HEADER_CONTENT_TYPE);
@@ -186,4 +186,4 @@ const uploadImage = async (req, res) => {
     }
 };
 
-module.exports = { getAll, getOne, create, update, remove, uploadImage/*, updateStock*/ };
+module.exports = { getAll, getOne, create, update, remove, uploadImage, updateStock };

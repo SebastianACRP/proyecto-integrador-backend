@@ -28,7 +28,7 @@ const sendMail = async (to, subject, content) => {
         const options = setOptions(to, subject, content);
 
         await smtp.sendMail(options);
-
+        console.log(options);
         return "Envío Correcto";
     } catch (error) {
         console.error(error);
